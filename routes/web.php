@@ -31,7 +31,9 @@ Route::prefix('/admin')->middleware(['auth','verified'])->group(function (){
         Route::patch('/{id}/update','Admin\AssignmentController@update')->name('assignment.update');
         Route::delete('/{assignment}/delete','Admin\AssignmentController@destroy');
 
-        Route::get('/{course_id}/students','Admin\MarkStudentsController@index')->name('assignment.students');
+        //Routes for student marking
+        Route::get('/{assignmentId}/students','Admin\MarkStudentsController@index')->name('assignment.students');
+        Route::post('/store-marking','Admin\MarkStudentsController@storeMarking')->name('store.marking');
     });
 
 });

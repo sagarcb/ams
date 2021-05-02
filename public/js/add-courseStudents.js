@@ -33,7 +33,7 @@ $(document).ready(function () {
                                 <td>
                                     <button data-id="${data.id}" class="btn btn-warning btn-sm editBtn" data-toggle="tool-tip" title="Edit Student">
                                         <i class="fa fa-edit"></i></button>
-                                    <button data-id="${data.id}" class="btn btn-danger btn-sm editBtn" data-toggle="tool-tip" title="Delete Student">
+                                    <button data-id="${data.id}" class="btn btn-danger btn-sm deleteBtn" data-toggle="tool-tip" title="Delete Student">
                                         <i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
@@ -63,32 +63,39 @@ $(document).ready(function () {
                 }
             })
     });
-
-    $('.editBtn').on('click', function () {
-        let studentName = $(this).closest('td').prev().prev().text();
-        let studentId = $(this).closest('td').prev().text();
-        let id = $(this).attr('data-id');
-        $('#student_name').val(studentName);
-        $('#student_id').val(studentId);
-        $('#courseStudentId').val(id);
-    });
-
-
-    $('.deleteBtn').on('click',function () {
-        let id = $(this).attr('data-id');
-        if (confirm("Are you sure want to delete this student Information?")) {
-            $.ajax({
-                type: 'DELETE',
-                url: '/admin/course/' + id + '/delete-student',
-                success: function () {
-                    new SnackBar({
-                        message: "Successfully Deleted",
-                        timeout: 3500,
-                        status: 'danger'
-                    });
-                    $('tr[data-id="'+id+'"]').remove();
-                }
-            })
-        }
-    });
 });
+    $(document).ready(function () {
+        $(document).on('click','.editBtn',function () {
+            let studentName = $(this).closest('td').prev().prev().text();
+            let studentId = $(this).closest('td').prev().text();
+            let id = $(this).attr('data-id');
+            $('#student_name').val(studentName);
+            $('#student_id').val(studentId);
+            $('#courseStudentId').val(id);
+        });
+
+    });
+
+
+
+    $(document).ready(function () {
+        $(document).on('click','.deleteBtn',function () {
+            let id = $(this).attr('data-id');
+            if (confirm("Are you sure want to delete this student Information?")) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/admin/course/' + id + '/delete-student',
+                    success: function () {
+                        new SnackBar({
+                            message: "Successfully Deleted",
+                            timeout: 3500,
+                            status: 'danger'
+                        });
+                        $('tr[data-id="'+id+'"]').remove();
+                    }
+                })
+            }
+        });
+    });
+
+

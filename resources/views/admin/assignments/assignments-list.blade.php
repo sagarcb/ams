@@ -47,7 +47,7 @@
                                         </a>
                                         <button data-id="{{$assignment->id}}" class="btn btn-danger btn-sm m-1 deleteBtn " data-toggle="tooltip" title="Delete Assignment">
                                                 <i class="fa fa-trash"></i></button>
-                                        <a href="{{route('assignment.students',$assignment->course_id)}}" class="m-1">
+                                        <a href="{{route('assignment.students',$assignment->id)}}" class="m-1">
                                             <button class="btn btn-primary btn-sm" data-toggle="tooltip" title="Start marking students">Marking</button>
                                         </a>
                                     </div>

@@ -27,19 +27,24 @@ $(function () {
                 $(msg).append('<div class="alert alert-success" role="alert">\n' +
                     '  Data Successfully Added!!!\n' +
                     '</div>');
-                $('tbody').prepend('' +
-                    '<tr data-id="'+data.id+'">\n' +
-                    '<td class="title">'+data.title+'</td>\n' +
-                    '<td class="course_code">'+data.course_code+'</td>\n' +
-                    '<td>\n' +
-                    '<a href="#" data-toggle="tooltip" title="Edit Course">\n' +
-                    '<button class="btn btn-warning btn-sm editBtn" data-toggle="modal" data-target="#modal-edit"><i class="fa fa-edit"></i></button>\n' +
-                    '</a>\n' +
-                    '<a href="#" data-toggle="tooltip" title="Delete Course">\n' +
-                    '<button id="deleteBtn" class="btn btn-danger btn-sm deleteBtn"><i class="fa fa-trash"></i></button>\n' +
-                    '</a>\n' +
-                    '</td>\n' +
-                    '</tr>')
+                $('tbody').prepend(`
+                         <tr data-id="${data.id}">
+                            <td class="title">${data.title}</td>
+                            <td class="course_code">${data.course_code}</td>
+                            <td>
+                                <a href="#" data-toggle="tooltip" title="Edit Course">
+                                    <button class="btn btn-warning btn-sm editBtn" data-toggle="modal" data-target="#modal-edit"><i class="fa fa-edit"></i></button>
+                                </a>
+                                <a href="#" data-toggle="tooltip" title="Delete Course">
+                                    <button class="btn btn-danger btn-sm deleteBtn"><i class="fa fa-trash"></i></button>
+                                </a>
+                                <a href="/admin/course/${data.id}/addStudent">
+                                    <button class="btn btn-primary btn-sm">Add Students</button>
+                                </a>
+                            </td>
+                        </tr>
+                `);
+
                 $("#addForm input[name='title']").val(' ');
                 $('#addForm input[name="course_code"]').val(' ');
             },

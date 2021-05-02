@@ -65,7 +65,7 @@ class CourseController extends Controller
         $this->validate($request,[
            'course_id' => 'required',
            'student_name' => 'required',
-           'student_id' => 'required|unique:course_students,student_id,'.$request->id
+           'student_id' => 'required'
         ]);
 
         //$data = CourseStudent::create($request->all());
